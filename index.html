@@ -29,11 +29,13 @@
         header h1 {
             font-size: 2.5rem;
             margin-bottom: 0.5rem;
+            font-weight: 700;
         }
 
         header p {
             font-size: 1.1rem;
             opacity: 0.9;
+            font-weight: 500;
         }
 
         nav {
@@ -42,6 +44,7 @@
             position: sticky;
             top: 0;
             z-index: 100;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
         nav ul {
@@ -49,27 +52,53 @@
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
+            gap: 1rem;
         }
 
         nav ul li {
-            margin: 0 1.5rem;
+            margin: 0;
         }
 
         nav ul li a {
             color: white;
             text-decoration: none;
             font-weight: 500;
-            transition: color 0.3s;
+            transition: color 0.3s ease;
+            padding: 0.5rem 1rem;
+            display: block;
         }
 
         nav ul li a:hover {
             color: #ff6b35;
+            background-color: rgba(255, 107, 53, 0.1);
+            border-radius: 4px;
         }
 
         .container {
             max-width: 1200px;
             margin: 2rem auto;
             padding: 0 1rem;
+        }
+
+        .highlight {
+            background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+            padding: 2.5rem;
+            border-radius: 8px;
+            color: white;
+            text-align: center;
+            margin-bottom: 3rem;
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.2);
+        }
+
+        .highlight h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .highlight p {
+            font-size: 1.1rem;
+            opacity: 0.95;
         }
 
         .news-grid {
@@ -84,12 +113,12 @@
             border-radius: 8px;
             overflow: hidden;
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .news-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
         }
 
         .news-card-image {
@@ -100,7 +129,8 @@
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 3rem;
+            font-size: 3.5rem;
+            font-weight: bold;
         }
 
         .news-card-content {
@@ -111,54 +141,50 @@
             display: inline-block;
             background-color: #ff6b35;
             color: white;
-            padding: 0.3rem 0.8rem;
+            padding: 0.4rem 0.9rem;
             border-radius: 20px;
-            font-size: 0.85rem;
-            margin-bottom: 0.5rem;
+            font-size: 0.8rem;
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .news-card h3 {
             font-size: 1.3rem;
-            margin: 0.5rem 0;
+            margin: 0.8rem 0;
             color: #333;
+            line-height: 1.4;
+            font-weight: 600;
         }
 
         .news-card p {
             color: #666;
             font-size: 0.95rem;
-            margin: 0.5rem 0;
+            margin: 0.8rem 0;
+            line-height: 1.5;
         }
 
         .news-card-date {
             color: #999;
             font-size: 0.85rem;
-            margin-top: 1rem;
+            margin-top: 1.2rem;
+            border-top: 1px solid #eee;
+            padding-top: 1rem;
         }
 
         footer {
             background-color: #333;
             color: white;
             text-align: center;
-            padding: 2rem 0;
+            padding: 2.5rem 0;
             margin-top: 3rem;
+            border-top: 3px solid #ff6b35;
         }
 
         footer p {
             margin: 0.5rem 0;
-        }
-
-        .highlight {
-            background-color: #ff6b35;
-            padding: 2rem;
-            border-radius: 8px;
-            color: white;
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-
-        .highlight h2 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
+            font-size: 0.95rem;
         }
 
         @media (max-width: 768px) {
@@ -166,16 +192,58 @@
                 font-size: 2rem;
             }
 
+            header p {
+                font-size: 0.95rem;
+            }
+
             nav ul {
                 flex-direction: column;
+                gap: 0;
             }
 
             nav ul li {
-                margin: 0.5rem 0;
+                margin: 0;
+                width: 100%;
+            }
+
+            nav ul li a {
+                border-bottom: 1px solid #555;
             }
 
             .news-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .highlight {
+                padding: 1.5rem;
+                margin-bottom: 2rem;
+            }
+
+            .highlight h2 {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 1.5rem;
+            }
+
+            .container {
+                padding: 0 0.5rem;
+            }
+
+            .news-card-image {
+                font-size: 2.5rem;
+                height: 150px;
+            }
+
+            .news-card-content {
+                padding: 1rem;
+            }
+
+            .highlight h2 {
+                font-size: 1.3rem;
             }
         }
     </style>
@@ -208,7 +276,7 @@
                 <div class="news-card-content">
                     <span class="news-card-category">രാഷ്ട്രീയം</span>
                     <h3>സർക്കാരിന്റെ പുതിയ നയം പ്രഖ്യാപനം</h3>
-                    <p>കേരളത്തിലെ സർക്കാർ ജനങ്ങളുടെ കല്യാണത്തിനായി പുതിയ നയം പ്രഖ്യാപിച്ചു.</p>
+                    <p>കേരളത്തിലെ സർക്കാർ ജനങ്ങളുടെ കല്യാണത്തിനായി പുതിയ നയം പ്രഖ്യാപിച്ചിരിക്കുന്നു. ഈ നയം വിദ്യാഭ്യാസം, ആരോഗ്യ സേവനം എബി കായികം എന്നീ മേഖലകളിൽ വലിയ മാറ്റമുണ്ടാകും.</p>
                     <div class="news-card-date">18 മെയ് 2026</div>
                 </div>
             </div>
@@ -218,7 +286,7 @@
                 <div class="news-card-content">
                     <span class="news-card-category">കായികം</span>
                     <h3>ഇന്ത്യൻ ക്രിക്കറ്റ് ടീം വിജയം</h3>
-                    <p>ഇന്ത്യൻ ക്രിക്കറ്റ് ടീം അന്താരാഷ്ട്ര മത്സരത്തിൽ പരാജയപ്പെട്ടു.</p>
+                    <p>ഇന്ത്യൻ ക്രിക്കറ്റ് ടീം അന്താരാഷ്ട്ര ട്വന്റി-20 മത്സരത്തിൽ മികച്ച പ്രകടനം നടത്തി വിജയിച്ചിരിക്കുന്നു. കപ്പിലൻ വിരാട് കോലിയുടെ നേതൃത്വത്തിൽ ഈ ജയം സാധ്യമായിരിക്കുന്നു.</p>
                     <div class="news-card-date">17 മെയ് 2026</div>
                 </div>
             </div>
@@ -228,7 +296,7 @@
                 <div class="news-card-content">
                     <span class="news-card-category">വിനോദം</span>
                     <h3>മലയാളം സിനിമയുടെ വിശ്വാസ്യത വർദ്ധിച്ചു</h3>
-                    <p>പുതിയ മലയാളം സിനിമകൾ സിനിമാ ഹാളിലെ കാഴ്ച സംഖ്യ വർധിച്ചുകൊണ്ടിരിക്കുന്നു.</p>
+                    <p>പുതിയ മലയാളം സിനിമകൾ സിനിമാ ഹാളിലെ കാഴ്ച സംഖ്യ വർധിച്ചുകൊണ്ടിരിക്കുന്നു. പ്രതിഭാധരമായ സംവിധായകരും അഭിനേതാക്കളും ഉയർന്ന നിലവാരത്തിലുള്ള സിനിമകൾ നിർമ്മിച്ചുകൊണ്ടിരിക്കുന്നു.</p>
                     <div class="news-card-date">16 മെയ് 2026</div>
                 </div>
             </div>
@@ -238,7 +306,7 @@
                 <div class="news-card-content">
                     <span class="news-card-category">സാങ്കേതികത</span>
                     <h3>നിയോ ടെക്നോളജി കേരളത്തിലെത്തി</h3>
-                    <p>കൃത്രിമ ബുദ്ധിമത്ത പ്രയോഗിച്ച് കേരളത്തിലെ ഓഫിസുകൾ ആധുനികീകരിച്ചുകൊണ്ടിരിക്കുന്നു.</p>
+                    <p>കൃത്രിമ ബുദ്ധിമത്ത പ്രയോഗിച്ച് കേരളത്തിലെ ഓഫിസുകൾ ആധുനികീകരിച്ചിരിക്കുന്നു. ഈ സാങ്കേതികതയ്ക്ക് കാര്യക്ഷമത വർദ്ധിപ്പിക്കാനും ചെലവ് കുറയ്ക്കാനും കഴിയും.</p>
                     <div class="news-card-date">15 മെയ് 2026</div>
                 </div>
             </div>
@@ -248,7 +316,7 @@
                 <div class="news-card-content">
                     <span class="news-card-category">ആരോഗ്യം</span>
                     <h3>സ്വാസ്ഥ്യ സേവനങ്ങളിലെ പുതിയ സമ്പ്രദായം</h3>
-                    <p>ആരോഗ്യ സംരക്ഷണ സേവനങ്ങളിൽ പുതിയ മാനദണ്ഡം നിയോഗിച്ചിരിക്കുന്നു.</p>
+                    <p>ആരോഗ്യ സംരക്ഷണ സേവനങ്ങളിൽ പുതിയ മാനദണ്ഡം നിയോഗിച്ചിരിക്കുന്നു. ഇത് രോഗികൾക്കുള്ള സേവനത്തിന്റെ നിലവാരം ഉയർത്തും എന്നാണ് പ്രതീക്ഷിക്കുന്നത്.</p>
                     <div class="news-card-date">14 മെയ് 2026</div>
                 </div>
             </div>
@@ -258,7 +326,7 @@
                 <div class="news-card-content">
                     <span class="news-card-category">പരിസ്ഥിതി</span>
                     <h3>പരിസ്ഥിതി സംരക്ഷണ പദ്ധതി സാരിയാ</h3>
-                    <p>കേരളത്തിലെ പരിസ്ഥിതി സംരക്ഷണത്തിനായി പുതിയ പദ്ധതി തയ്യാറാക്കിയിരിക്കുന്നു.</p>
+                    <p>കേരളത്തിലെ പരിസ്ഥിതി സംരക്ഷണത്തിനായി പുതിയ പദ്ധതി തയ്യാറാക്കിയിരിക്കുന്നു. വനനശീകരണം തടയാനും കാലാവസ്ഥ സമ്പ്രദായം സംരക്ഷിക്കാനും ഈ പദ്ധതി സഹായകമാകുമെന്ന് കരുതുന്നു.</p>
                     <div class="news-card-date">13 മെയ് 2026</div>
                 </div>
             </div>
