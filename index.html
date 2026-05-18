@@ -1,22 +1,273 @@
 <!DOCTYPE html>
 <html lang="ml">
 <head>
-  <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Malayalam Live News - കേരളത്തിലെ ഏറ്റവും പുതിയ വാർത്തകൾ. Latest Malayalam news from Kerala, India and World." />
-  <meta name="keywords" content="Malayalam news, Kerala news, breaking news, live news, India news, world news, sports, entertainment" />
-  <meta name="theme-color" content="#c41e3a" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Malayalam:wght@300;400;500;600;700;800;900&family=Baloo+Chettan+2:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
-  <title>Malayalam Live News | മലയാളം ലൈവ് ന്യൂസ്</title>
-  <link rel="manifest" href="/manifest.json" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Malayalam News - മലയാളം വാർത്തകൾ</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans Malayalam', 'Malayalam Sangam MN', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        nav {
+            background-color: #333;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        nav ul li {
+            margin: 0 1.5rem;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #ff6b35;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .news-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .news-card-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .news-card-content {
+            padding: 1.5rem;
+        }
+
+        .news-card-category {
+            display: inline-block;
+            background-color: #ff6b35;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .news-card h3 {
+            font-size: 1.3rem;
+            margin: 0.5rem 0;
+            color: #333;
+        }
+
+        .news-card p {
+            color: #666;
+            font-size: 0.95rem;
+            margin: 0.5rem 0;
+        }
+
+        .news-card-date {
+            color: #999;
+            font-size: 0.85rem;
+            margin-top: 1rem;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        footer p {
+            margin: 0.5rem 0;
+        }
+
+        .highlight {
+            background-color: #ff6b35;
+            padding: 2rem;
+            border-radius: 8px;
+            color: white;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .highlight h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            nav ul {
+                flex-direction: column;
+            }
+
+            nav ul li {
+                margin: 0.5rem 0;
+            }
+
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div id="root"></div>
-  <script type="module" src="/src/main.jsx"></script>
+    <header>
+        <h1>Malayalam News</h1>
+        <p>മലയാളം വാർത്തകൾ</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#home">വീട്</a></li>
+            <li><a href="#politics">രാഷ്ട്രീയം</a></li>
+            <li><a href="#sports">കായികം</a></li>
+            <li><a href="#entertainment">വിനോദം</a></li>
+            <li><a href="#tech">സാങ്കേതികത</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="highlight">
+            <h2>ഏറ്റവും പുതിയ വാർത്തകൾ</h2>
+            <p>കേരളത്തിൽ നിന്നുള്ള ഏറ്റവും പുതിയ അപ്ഡേറ്റുകൾ ഇവിടെ ലഭിക്കുക</p>
+        </div>
+
+        <div class="news-grid">
+            <div class="news-card">
+                <div class="news-card-image">📰</div>
+                <div class="news-card-content">
+                    <span class="news-card-category">രാഷ്ട്രീയം</span>
+                    <h3>സർക്കാരിന്റെ പുതിയ നയം പ്രഖ്യാപനം</h3>
+                    <p>കേരളത്തിലെ സർക്കാർ ജനങ്ങളുടെ കല്യാണത്തിനായി പുതിയ നയം പ്രഖ്യാപിച്ചു.</p>
+                    <div class="news-card-date">18 മെയ് 2026</div>
+                </div>
+            </div>
+
+            <div class="news-card">
+                <div class="news-card-image">⚽</div>
+                <div class="news-card-content">
+                    <span class="news-card-category">കായികം</span>
+                    <h3>ഇന്ത്യൻ ക്രിക്കറ്റ് ടീം വിജയം</h3>
+                    <p>ഇന്ത്യൻ ക്രിക്കറ്റ് ടീം അന്താരാഷ്ട്ര മത്സരത്തിൽ പരാജയപ്പെട്ടു.</p>
+                    <div class="news-card-date">17 മെയ് 2026</div>
+                </div>
+            </div>
+
+            <div class="news-card">
+                <div class="news-card-image">🎬</div>
+                <div class="news-card-content">
+                    <span class="news-card-category">വിനോദം</span>
+                    <h3>മലയാളം സിനിമയുടെ വിശ്വാസ്യത വർദ്ധിച്ചു</h3>
+                    <p>പുതിയ മലയാളം സിനിമകൾ സിനിമാ ഹാളിലെ കാഴ്ച സംഖ്യ വർധിച്ചുകൊണ്ടിരിക്കുന്നു.</p>
+                    <div class="news-card-date">16 മെയ് 2026</div>
+                </div>
+            </div>
+
+            <div class="news-card">
+                <div class="news-card-image">💻</div>
+                <div class="news-card-content">
+                    <span class="news-card-category">സാങ്കേതികത</span>
+                    <h3>നിയോ ടെക്നോളജി കേരളത്തിലെത്തി</h3>
+                    <p>കൃത്രിമ ബുദ്ധിമത്ത പ്രയോഗിച്ച് കേരളത്തിലെ ഓഫിസുകൾ ആധുനികീകരിച്ചുകൊണ്ടിരിക്കുന്നു.</p>
+                    <div class="news-card-date">15 മെയ് 2026</div>
+                </div>
+            </div>
+
+            <div class="news-card">
+                <div class="news-card-image">🏥</div>
+                <div class="news-card-content">
+                    <span class="news-card-category">ആരോഗ്യം</span>
+                    <h3>സ്വാസ്ഥ്യ സേവനങ്ങളിലെ പുതിയ സമ്പ്രദായം</h3>
+                    <p>ആരോഗ്യ സംരക്ഷണ സേവനങ്ങളിൽ പുതിയ മാനദണ്ഡം നിയോഗിച്ചിരിക്കുന്നു.</p>
+                    <div class="news-card-date">14 മെയ് 2026</div>
+                </div>
+            </div>
+
+            <div class="news-card">
+                <div class="news-card-image">🌱</div>
+                <div class="news-card-content">
+                    <span class="news-card-category">പരിസ്ഥിതി</span>
+                    <h3>പരിസ്ഥിതി സംരക്ഷണ പദ്ധതി സാരിയാ</h3>
+                    <p>കേരളത്തിലെ പരിസ്ഥിതി സംരക്ഷണത്തിനായി പുതിയ പദ്ധതി തയ്യാറാക്കിയിരിക്കുന്നു.</p>
+                    <div class="news-card-date">13 മെയ് 2026</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Malayalam News - ആരോഗ്യകരമായ സമൂഹത്തിനായി</p>
+        <p>എല്ലാ അധികാരങ്ങളും പരിരക്ഷിതം | All Rights Reserved</p>
+    </footer>
 </body>
 </html>
